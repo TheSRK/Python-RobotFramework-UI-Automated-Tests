@@ -14,6 +14,15 @@ ${txaEmptyPassword}        xpath://p[contains(text(),'Please enter your password
 ${btnDarkMode}      xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
 ${btnLightMode}     xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
 
+######################
+# Dashboard page locators
+${btnProfile}       id:composition-button
+${mnuLogout}        id:composition-menu
+${tblData}      xpath://body/div[@id='__next']/div[1]/div[2]/div[1]/div[2]
+${txtSearch}        xpath://input[@id='search-input']
+${searchString}     Lannister
+${searchResult}     xpath://div[@data-field="lastName"]//div[contains(text(), "Lannister")]
+
 # username and pwd
 ${username}     admin@email.com
 ${password}     thisisverysecure
@@ -30,7 +39,7 @@ ${browser}      Chrome
 Launch Browser
     open browser    ${url}      ${browser}
     maximize browser window
-    wait until element is visible    ${txawelcome}
+    wait until element is visible    ${txaWelcome}
     set selenium speed    1
 
 # make dark mode
@@ -55,6 +64,18 @@ Right Email and Wrong Passoword using ${username} and ${invalidPassword}
 # valid email and valid password
 Valid Email and Password using ${username} and ${password}
     ValidLogin    ${username}       ${password}
+
+
+Search Table Data
+    Search    ${txtSearch}      ${searchString}     ${searchresult}
+
+#######################
+# Dashboard page
+Logout from Dashbord
+    Logout    ${btnprofile}     ${mnulogout}        ${txaWelcome}
+
+
+
 
 # closing current browser
 Tear Down
@@ -93,3 +114,20 @@ InavlidPasswordLogin
 MakeDarkMode
     [Arguments]    ${button}
     click button    ${button}
+
+##################
+# dashboard page keywords
+
+Search
+    [Arguments]    ${searchBox}     ${searchString}     ${element}
+    wait until element is visible       ${searchBox}
+    wait until element is enabled    ${searchBox}
+    click element    ${searchBox}
+    input text    ${searchBox}      ${searchString}
+    wait until element is visible    ${element}
+
+Logout
+    [Arguments]    ${profile}       ${logout}       ${element}
+    click button    ${profile}
+    click element    ${logout}
+    wait until element is visible       ${element}
