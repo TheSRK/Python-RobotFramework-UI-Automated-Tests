@@ -56,6 +56,7 @@ robotframework
 robotframework-seleniumlibrary
 ```
 Now install the IntelliBot plugin in your IDE.
+
 Go to File > Settings > Plugins and then search IntelliBot #patched, install and restart your IDE
 
 
