@@ -18,17 +18,11 @@ ${btnDarkMode}      xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
 ${btnLightMode}     xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
 
 ######################
-# Dashboard page locators
-${btnProfile}       id:composition-button
-${mnuLogout}        id:composition-menu
-${tblData}      xpath://body/div[@id='__next']/div[1]/div[2]/div[1]/div[2]
-${txtSearch}        xpath://input[@id='search-input']
-${searchString}     Lannister
-${searchResult}     xpath://div[@data-field="lastName"]//div[contains(text(), "Lannister")]
+
 
 # username and pwd
-#${username}     admin@email.com
-#${password}     thisisverysecure
+${username}     admin@email.com
+${password}     thisisverysecure
 #${invalidUsername}     admin
 #${invalidPassword}     thisisverysecur
 
@@ -67,14 +61,6 @@ ${searchResult}     xpath://div[@data-field="lastName"]//div[contains(text(), "L
 #Valid Email and Password using ${username} and ${password}
 
 
-#Search Table Data
-#    Search    ${txtSearch}      ${searchString}     ${searchresult}
-
-#######################
-# Dashboard page
-#Logout from Dashbord
-#    Logout    ${btnprofile}     ${mnulogout}        ${txaWelcome}
-
 
 
 
@@ -85,49 +71,9 @@ ${searchResult}     xpath://div[@data-field="lastName"]//div[contains(text(), "L
 
 *** Keywords ***
 
-#ValidLogin
-#    [Arguments]    ${username}      ${password}
-#    input text      ${txtEmail}       ${username}
-#    input password    ${txtpassword}        ${password}
-#    click button    ${btnlogin}
-
-EmptyEmailAndPasswordLogin
-    [Arguments]    ${username}      ${password}
+ValidLoginScenario
+    [Arguments]    ${username}      ${password}     ${element}
     input text      ${txtEmail}       ${username}
     input password    ${txtpassword}        ${password}
     click button    ${btnlogin}
-    wait until element is visible    ${txaInvalidEmail}
-    wait until element is visible    ${txaEmptyPassword}
-
-InavlidEmailLogin
-    [Arguments]    ${username}      ${password}
-    input text      ${txtEmail}       ${username}
-    input password    ${txtpassword}        ${password}
-    click button    ${btnlogin}
-    wait until element is visible    ${txaInvalidEmail}
-
-InavlidPasswordLogin
-    [Arguments]    ${username}      ${password}
-    input text      ${txtEmail}       ${username}
-    input password    ${txtpassword}        ${password}
-    click button    ${btnlogin}
-    wait until element is visible    ${txaInvaldEmainAndPassword}
-
-
-
-##################
-# dashboard page keywords
-
-Search
-    [Arguments]    ${searchBox}     ${searchString}     ${element}
-    wait until element is visible       ${searchBox}
-    wait until element is enabled    ${searchBox}
-    click element    ${searchBox}
-    input text    ${searchBox}      ${searchString}
     wait until element is visible    ${element}
-
-Logout
-    [Arguments]    ${profile}       ${logout}       ${element}
-    click button    ${profile}
-    click element    ${logout}
-    wait until element is visible       ${element}
