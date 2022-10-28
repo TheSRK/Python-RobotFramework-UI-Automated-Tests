@@ -2,6 +2,7 @@
 Library     SeleniumLibrary
 
 Resource    ../Base/BaseSetup.robot
+Resource    ../Commons/CommonFeature.robot
 Suite Setup    BaseSetup.StartTest     ${url}      ${browser}      ${txaWelcome}
 Suite Teardown    BaseSetup.CloseTest
 *** Variables ***
@@ -46,10 +47,10 @@ ${browser}      Chrome
 
 # make dark mode
 Test Dark Mode
-    MakeDarkMode    ${btnlightmode}
+    CommonFeature.ChangeViewMode    ${btnlightmode}
 # make light mode
 Test Dark Mode
-    MakeDarkMode    ${btnDarkMode}
+    CommonFeature.ChangeViewMode    ${btnDarkMode}
 
 # empty credentials login attempt
 Empty Login Credential
@@ -85,6 +86,7 @@ Logout from Dashbord
 
 
 *** Keywords ***
+
 ValidLogin
     [Arguments]    ${username}      ${password}
     input text      ${txtEmail}       ${username}
@@ -113,9 +115,7 @@ InavlidPasswordLogin
     click button    ${btnlogin}
     wait until element is visible    ${txaInvaldEmainAndPassword}
 
-MakeDarkMode
-    [Arguments]    ${button}
-    click button    ${button}
+
 
 ##################
 # dashboard page keywords
