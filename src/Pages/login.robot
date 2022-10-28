@@ -1,7 +1,9 @@
 *** Settings ***
 Library     SeleniumLibrary
 
-
+Resource    ../Base/BaseSetup.robot
+Suite Setup    BaseSetup.StartTest     ${url}      ${browser}      ${txaWelcome}
+Suite Teardown    BaseSetup.CloseTest
 *** Variables ***
 # Login page locators
 ${txaWelcome}       xpath://b[contains(text(),'Welcome!')]
@@ -34,13 +36,13 @@ ${url}      https://talent-recruitment.test.bluestonepim.com/index.html
 ${browser}      Chrome
 
 *** Test Cases ***
-
-# launching browser and visiting url
-Launch Browser
-    open browser    ${url}      ${browser}
-    maximize browser window
-    wait until element is visible    ${txaWelcome}
-    set selenium speed    1
+#
+## launching browser and visiting url
+#Launch Browser
+#    open browser    ${url}      ${browser}
+#    maximize browser window
+#    wait until element is visible    ${txaWelcome}
+#    set selenium speed    1
 
 # make dark mode
 Test Dark Mode
@@ -77,9 +79,9 @@ Logout from Dashbord
 
 
 
-# closing current browser
-Tear Down
-    close browser
+## closing current browser
+#Tear Down
+#    close browser
 
 
 *** Keywords ***
