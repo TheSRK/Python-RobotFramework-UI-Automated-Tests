@@ -1,0 +1,5 @@
+${username};${password};${errorMessage}
+admin;wrongpassword;Email is not valid
+${EMPTY};${EMPTY};Email is not valid
+admin@email.com;wrongpassword;Invalid email or password
+admin@email.com;thisisverysecure;Full name

@@ -3,11 +3,11 @@ Library     SeleniumLibrary
 
 Resource    ../Base/BaseSetup.robot
 Resource    ../Commons/CommonFeature.robot
-Suite Setup    BaseSetup.StartTest     ${url}      ${browser}      ${txaWelcome}
-Suite Teardown    BaseSetup.CloseTest
+
+
 *** Variables ***
 # Login page locators
-${txaWelcome}       xpath://b[contains(text(),'Welcome!')]
+
 ${txtEmail}     name:email
 ${txtPassword}      name:password
 ${btnLogIn}     xpath://button[contains(text(),'Log in')]
@@ -27,16 +27,15 @@ ${searchString}     Lannister
 ${searchResult}     xpath://div[@data-field="lastName"]//div[contains(text(), "Lannister")]
 
 # username and pwd
-${username}     admin@email.com
-${password}     thisisverysecure
-${invalidUsername}     admin
-${invalidPassword}     thisisverysecur
+#${username}     admin@email.com
+#${password}     thisisverysecure
+#${invalidUsername}     admin
+#${invalidPassword}     thisisverysecur
 
 # test config
-${url}      https://talent-recruitment.test.bluestonepim.com/index.html
-${browser}      Chrome
 
-*** Test Cases ***
+
+#*** Test Cases ***
 #
 ## launching browser and visiting url
 #Launch Browser
@@ -46,36 +45,35 @@ ${browser}      Chrome
 #    set selenium speed    1
 
 # make dark mode
-Test Dark Mode
-    CommonFeature.ChangeViewMode    ${btnlightmode}
-# make light mode
-Test Dark Mode
-    CommonFeature.ChangeViewMode    ${btnDarkMode}
+#Test Dark Mode
+#    CommonFeature.ChangeViewMode    ${btnlightmode}
+## make light mode
+#Test Dark Mode
+#    CommonFeature.ChangeViewMode    ${btnDarkMode}
 
-# empty credentials login attempt
-Empty Login Credential
-    EmptyEmailAndPasswordLogin      ${EMPTY}        ${EMPTY}
-
-# wrong email and right password
-Wrong Email and Right Password using ${invalidUsername} and ${password}
-    InavlidEmailLogin    ${invalidUsername}       ${password}
-
-# right email and wrong password
-Right Email and Wrong Passoword using ${username} and ${invalidPassword}
-    InavlidPasswordLogin    ${username}       ${invalidPassword}
+## empty credentials login attempt
+#Empty Login Credential
+#    EmptyEmailAndPasswordLogin      ${EMPTY}        ${EMPTY}
+#
+## wrong email and right password
+#Wrong Email and Right Password using ${invalidUsername} and ${password}
+#    InavlidEmailLogin    ${invalidUsername}       ${password}
+#
+## right email and wrong password
+#Right Email and Wrong Passoword using ${username} and ${invalidPassword}
+#    InavlidPasswordLogin    ${username}       ${invalidPassword}
 
 # valid email and valid password
-Valid Email and Password using ${username} and ${password}
-    ValidLogin    ${username}       ${password}
+#Valid Email and Password using ${username} and ${password}
 
 
-Search Table Data
-    Search    ${txtSearch}      ${searchString}     ${searchresult}
+#Search Table Data
+#    Search    ${txtSearch}      ${searchString}     ${searchresult}
 
 #######################
 # Dashboard page
-Logout from Dashbord
-    Logout    ${btnprofile}     ${mnulogout}        ${txaWelcome}
+#Logout from Dashbord
+#    Logout    ${btnprofile}     ${mnulogout}        ${txaWelcome}
 
 
 
@@ -87,11 +85,11 @@ Logout from Dashbord
 
 *** Keywords ***
 
-ValidLogin
-    [Arguments]    ${username}      ${password}
-    input text      ${txtEmail}       ${username}
-    input password    ${txtpassword}        ${password}
-    click button    ${btnlogin}
+#ValidLogin
+#    [Arguments]    ${username}      ${password}
+#    input text      ${txtEmail}       ${username}
+#    input password    ${txtpassword}        ${password}
+#    click button    ${btnlogin}
 
 EmptyEmailAndPasswordLogin
     [Arguments]    ${username}      ${password}

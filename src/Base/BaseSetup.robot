@@ -1,13 +1,15 @@
 *** Settings ***
 Library    SeleniumLibrary
 
-
+*** Variables ***
+${url}      https://talent-recruitment.test.bluestonepim.com/index.html
+${browser}      Chrome
+${txaWelcome}       xpath://b[contains(text(),'Welcome!')]
 *** Keywords ***
 StartTest
-    [Arguments]    ${siteUrl}       ${browserName}      ${element}
-    open browser    ${siteUrl}      ${browserName}
+    open browser    ${url}      ${browser}
     maximize browser window
-    wait until element is visible    ${element}
+    wait until element is visible    ${txaWelcome}
     set selenium speed    1
 
 # closing current browser
