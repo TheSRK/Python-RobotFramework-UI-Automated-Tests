@@ -6,27 +6,28 @@ Resource    ../src/Pages/LoginPage.robot
 Resource    ../src/Pages/DashboardPage.robot
 Suite Setup    BaseSetup.StartTest
 Suite Teardown    BaseSetup.CloseTest
-*** Variables ***
 
 
 *** Test Cases ***
+
+# Valid login to system
 Verify Login with username: ${username} and password: ${password}
     LoginPage.ValidLoginScenario    ${username}     ${password}     ${btnprofile}
 
-# make dark mode
+# make the UI dark mode
 Test Dark Mode
     CommonFeature.ChangeViewMode    ${btnlightmode}
 
-Search Table Data
+# search from the data table
+Search from Table Data
     DashboardPage.Search    ${txtSearch}      ${searchString}     ${searchresult}
 
-# make light mode
+# make the UI light mode
 Test Dark Mode
     CommonFeature.ChangeViewMode    ${btnDarkMode}
 
+# System Logout
 Logout from Dashbord
     DashboardPage.Logout    ${btnprofile}     ${mnulogout}        ${txaWelcome}
-
-*** Keywords ***
 
 

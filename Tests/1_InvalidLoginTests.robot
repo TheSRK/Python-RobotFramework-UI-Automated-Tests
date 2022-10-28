@@ -7,10 +7,9 @@ Resource    ../src/Pages/LoginPage.robot
 Suite Setup    BaseSetup.StartTest
 Suite Teardown    BaseSetup.CloseTest
 Test Template    LoginScenarios
-*** Variables ***
-
 
 *** Test Cases ***
+# Login with Inavlid credentials from Data.csv
 Verify Login with username: ${username} and password: ${password}
 
 
