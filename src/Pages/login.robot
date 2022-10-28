@@ -11,6 +11,8 @@ ${btnLogIn}     xpath://button[contains(text(),'Log in')]
 ${txaInvalidEmail}      xpath://p[contains(text(),'Email is not valid')]
 ${txaInvaldEmainAndPassword}        xpath://div[contains(text(),'Invalid email or password')]
 ${txaEmptyPassword}        xpath://p[contains(text(),'Please enter your password')]
+${btnDarkMode}      xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
+${btnLightMode}     xpath://body/div[@id='__next']/div[1]/div[1]/button[1]
 
 # username and pwd
 ${username}     admin@email.com
@@ -30,6 +32,13 @@ Launch Browser
     maximize browser window
     wait until element is visible    ${txawelcome}
     set selenium speed    1
+
+# make dark mode
+Test Dark Mode
+    MakeDarkMode    ${btnlightmode}
+# make light mode
+Test Dark Mode
+    MakeDarkMode    ${btnDarkMode}
 
 # empty credentials login attempt
 Empty Login Credential
@@ -81,9 +90,6 @@ InavlidPasswordLogin
     click button    ${btnlogin}
     wait until element is visible    ${txaInvaldEmainAndPassword}
 
-InputEmailBoxClear
-    [Arguments]    ${element}
-    press keys    ${element}        CTRL+a+BACKSPACE
-InputPasswordBoxClear
-    [Arguments]    ${element}
-    press keys    ${element}        CTRL+a+BACKSPACE
+MakeDarkMode
+    [Arguments]    ${button}
+    click button    ${button}
